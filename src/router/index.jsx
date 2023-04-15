@@ -4,6 +4,10 @@ import MainLayout from '../components/layouts/main.layout';
 
 const pageList = [
   {
+    path: '',
+    component: lazy(() => import('../pages/activity')),
+  },
+  {
     path: 'detail-activity',
     component: lazy(() => import('../pages/detail-activity')),
   },
@@ -12,9 +16,9 @@ const MainRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        {pageList.map((li) => {
+        {pageList.map((li, idx) => {
           const Element = li.component;
-          return <Route path={li.path} element={<Element />} />;
+          return <Route key={li.idx} path={li.path} element={<Element />} />;
         })}
       </Route>
     </Routes>
