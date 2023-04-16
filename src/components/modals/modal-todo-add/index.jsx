@@ -34,7 +34,7 @@ const ModalTodoAdd = (props) => {
         ? putTodo(state, data?.id)
         : postTodo(state)
             .then((res) => {
-              console.log(res);
+              onClose();
             })
             .catch((err) => {
               console.log(err);
@@ -44,9 +44,9 @@ const ModalTodoAdd = (props) => {
       console.log(error);
       setLoadingSubmit(false);
     } finally {
-      onClose();
       setLoadingSubmit(false);
       revalidate(id);
+      resetForm();
     }
   };
 
