@@ -1,6 +1,7 @@
 import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainLayout from '../components/layouts/main.layout';
+import { ToastContainer } from 'react-toastify';
 
 const pageList = [
   {
@@ -14,14 +15,16 @@ const pageList = [
 ];
 const MainRouter = () => {
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        {pageList.map((li, idx) => {
-          const Element = li.component;
-          return <Route key={idx} path={li.path} element={<Element />} />;
-        })}
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          {pageList.map((li, idx) => {
+            const Element = li.component;
+            return <Route key={idx} path={li.path} element={<Element />} />;
+          })}
+        </Route>
+      </Routes>
+    </>
   );
 };
 

@@ -17,3 +17,4 @@ export { ReactComponent as UnfinishedSVG } from './icon-unfinished.svg';
 export { ReactComponent as AzSVG } from './icon-az.svg';
 export { ReactComponent as ZaSVG } from './icon-za.svg';
 export { ReactComponent as WarningSVG } from './icon-modal-delete.svg';
+export { ReactComponent as InformationSVG } from './icon-information.svg';

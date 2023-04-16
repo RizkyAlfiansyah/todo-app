@@ -5,7 +5,7 @@ import { WarningSVG } from '../../../assets/icons';
 import { Button } from '../../atoms';
 
 const ModalDeleteTodo = (props) => {
-  const { isOpen, onClose, ...otherProps } = props;
+  const { data, isOpen, onClose, onSubmit, ...otherProps } = props;
   return (
     <ModalLayout
       isOpen={isOpen}
@@ -16,9 +16,8 @@ const ModalDeleteTodo = (props) => {
     >
       <div className="w-full flex flex-col justify-start items-center gap-10 py-11 px-14">
         <WarningSVG />
-        <p className="text-lg">
-          Apakah anda yakin menghapus activity{' '}
-          <strong>“Meeting dengan Client”?</strong>
+        <p className="text-lg text-center">
+          Apakah anda yakin menghapus activity <strong>“{data}”?</strong>
         </p>
         <div className="w-full flex justify-center items-center gap-5">
           <Button
@@ -29,7 +28,12 @@ const ModalDeleteTodo = (props) => {
           >
             Batal
           </Button>
-          <Button dataCy="todo-confirm-delete" variant="error" size="lg">
+          <Button
+            dataCy="todo-confirm-delete"
+            variant="error"
+            size="lg"
+            onClick={onSubmit}
+          >
             Hapus
           </Button>
         </div>
@@ -41,11 +45,13 @@ const ModalDeleteTodo = (props) => {
 ModalDeleteTodo.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 ModalDeleteTodo.defaultProps = {
   isOpen: false,
   onClose: () => {},
+  onSubmit: () => {},
 };
 
 export default ModalDeleteTodo;

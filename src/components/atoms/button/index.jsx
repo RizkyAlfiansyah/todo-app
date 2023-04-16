@@ -18,7 +18,7 @@ const Button = (props) => {
 
   return (
     <button
-      className={`${styles.size[size]} flex justify-start gap-1 items-center rounded-4xl text-lg font-semibold hover:shadow-md hover:scale-105 ${styles.variant[variant]}`}
+      className={`${styles.size[size]} flex justify-start gap-1 items-center rounded-4xl text-lg font-semibold hover:shadow-md hover:scale-105 ${styles.variant[variant]} disabled:bg-gray-100`}
       data-cy={dataCy}
       {...otherProps}
     >

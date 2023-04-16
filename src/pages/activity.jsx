@@ -1,27 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card } from '../components/atoms';
 import { PlusSVG } from '../assets/icons';
 import { NavLink } from 'react-router-dom';
 import EmptyState from '../components/layouts/empty-state';
+import { useActivity } from '../hooks/activity';
+import { postActivity } from '../services/activity';
 
 const Activity = (props) => {
+  const { data, refetch, loading } = useActivity();
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
+
+  const submitActivity = async () => {
+    setLoadingSubmit(true);
+    try {
+      await postActivity({
+        title: 'New Activity',
+        email: 'rizkkyaf@gmail.com',
+      })
+        .then((res) => {
+          refetch();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoadingSubmit(false);
+    }
+  };
+
   return (
     <>
       <header className="w-full flex justify-between items-center">
         <h2 className="text-4xl font-bold">Activity</h2>
-        <Button icon={<PlusSVG />}>Tambah</Button>
+        <Button
+          icon={<PlusSVG />}
+          disabled={loadingSubmit}
+          onClick={submitActivity}
+        >
+          Tambah
+        </Button>
       </header>
       <div className="w-full flex flex-wrap justify-start items-center gap-5">
-        <NavLink to="/detail-activity">
-          <Card />
-        </NavLink>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        {/* <EmptyState dataCy="activity-empty-state" /> */}
+        {data.length > 0 ? (
+          data.map((item, idx) => (
+            <Card data={item} revalidate={refetch} key={idx} />
+          ))
+        ) : loading ? (
+          <EmptyState dataCy="activity-empty-state" />
+        ) : (
+          <EmptyState dataCy="activity-empty-state" />
+        )}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import MainLayout from './components/layouts/main.layout';
 import MainRouter from './router';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
