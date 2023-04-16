@@ -25,7 +25,7 @@ const ListCard = (props) => {
   const { isOpen: openDelete, toggleModal: toggleModalDelete } = useModal();
   const { isOpen: openEdit, toggleModal: toggleModalEdit } = useModal();
 
-  const { activity_group_id, title, is_active, priority } = data;
+  const { activity_group_id, title, is_active, priority } = data || {};
 
   const submitToActive = async () => {
     const value = { is_active: !is_active };

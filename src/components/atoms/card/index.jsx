@@ -9,7 +9,7 @@ import { deleteActivity } from '../../../services/activity';
 
 const Card = (props) => {
   const { dataCy, data, revalidate } = props;
-  const { id, title, created_at } = data;
+  const { id, title, created_at } = data || {};
 
   const { isOpen: openDelete, toggleModal: toggleModalDelete } = useModal();
   const { isOpen: openInfo, toggleModal: toggleModalInfo } = useModal();
