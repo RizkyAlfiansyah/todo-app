@@ -95,10 +95,13 @@ const DetailActivity = (props) => {
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
+                data-cy="todo-title"
               />
             </OutsideClickHandler>
           ) : (
-            <h2 className="text-4xl font-bold">{data?.title}</h2>
+            <h2 className="text-4xl font-bold" data-cy="todo-title">
+              {data?.title}
+            </h2>
           )}
           <EditSVG
             className="hover:scale-105"
@@ -125,7 +128,11 @@ const DetailActivity = (props) => {
               }}
             />
           ) : null}
-          <Button icon={<PlusSVG />} onClick={() => toggleModal()}>
+          <Button
+            icon={<PlusSVG />}
+            onClick={() => toggleModal()}
+            dataCy="todo-add-button"
+          >
             Tambah
           </Button>
         </div>

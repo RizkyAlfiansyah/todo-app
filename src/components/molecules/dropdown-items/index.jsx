@@ -15,6 +15,7 @@ const DropdownItems = (props) => {
         return (
           <li
             key={index}
+            data-cy={index === 1 ? 'sort-selection' : 'todo-sort-button'}
             className="w-full flex justify-between items-start py-3 px-4 hover:bg-tertiary"
             onClick={() => {
               if (isDisabled) {

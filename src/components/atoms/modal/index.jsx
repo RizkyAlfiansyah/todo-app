@@ -87,7 +87,11 @@ const ModalLayout = (props) => {
                     {children}
                   </article>
                   <footer className="w-full flex justify-end items-center py-6 px-7">
-                    <Button onClick={onSubmit} disabled={disabled}>
+                    <Button
+                      onClick={onSubmit}
+                      disabled={disabled}
+                      dataCy="modal-add-save-button"
+                    >
                       Simpan
                     </Button>
                   </footer>

@@ -10,12 +10,15 @@ const SortItems = (props) => {
   return (
     <div className="flex flex-col gap-2" data-cy={dataCy}>
       <div className="rounded-full p-2 border border-gray-300 hover:scale-105">
-        <SortSVG onClick={() => setIsOpen((prev) => !prev)} />
+        <SortSVG
+          onClick={() => setIsOpen((prev) => !prev)}
+          data-cy="todo-sort-button"
+        />
       </div>
       {isOpen ? (
         <div className="absolute w-[235px] mt-1 z-50 top-12 right-3/4">
           <DropdownItems
-            dataCy="sort-dropdown"
+            dataCy="sort-selection"
             icon={icons}
             value={value}
             options={options}

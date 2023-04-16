@@ -10,7 +10,7 @@ import {
   ElipseYellowSVG,
 } from '../../../assets/icons';
 import { useModal } from '../../../hooks/common';
-import { ModalAddTodo, ModalDeleteTodo } from '../../modals';
+import { ModalAddTodo, ModalDeleteTodo, ModalInformation } from '../../modals';
 import { deleteTodo, putTodo } from '../../../services/todo';
 
 const colors = {
@@ -24,6 +24,7 @@ const ListCard = (props) => {
   const { data, revalidate } = props;
   const { isOpen: openDelete, toggleModal: toggleModalDelete } = useModal();
   const { isOpen: openEdit, toggleModal: toggleModalEdit } = useModal();
+  const { isOpen: openInfo, toggleModal: toggleModalInfo } = useModal();
 
   const { activity_group_id, title, is_active, priority } = data || {};
 
@@ -44,7 +45,7 @@ const ListCard = (props) => {
   const submitDelete = async (id) => {
     try {
       await deleteTodo(id).then((res) => {
-        revalidate(activity_group_id);
+        toggleModalInfo();
       });
     } catch (error) {
       console.log(error);
@@ -63,12 +64,14 @@ const ListCard = (props) => {
           <input
             type="checkbox"
             className="w-5 h-5 cursor-pointer"
+            data-cy="todo-item-checkbox"
             checked={!is_active}
             onChange={submitToActive}
           />
           {colors[priority]}
           <p
             className={`text-lg text-gray-100 ${!is_active && 'line-through'}`}
+            data-cy="todo-title"
           >
             {title}
           </p>
@@ -94,6 +97,14 @@ const ListCard = (props) => {
         data={data}
         onClose={() => toggleModalEdit()}
         revalidate={revalidate}
+      />
+      <ModalInformation
+        message="List berhasil dihapus"
+        isOpen={openInfo}
+        onClose={() => {
+          toggleModalInfo();
+          revalidate(activity_group_id);
+        }}
       />
     </>
   );

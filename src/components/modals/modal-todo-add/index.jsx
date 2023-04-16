@@ -67,7 +67,7 @@ const ModalTodoAdd = (props) => {
       <div className="w-full p-8 flex flex-col justify-start items-start gap-6">
         <Input
           name="title"
-          dataCy="todo-input-title"
+          dataCy="modal-add-name-input"
           value={state.title}
           type="text"
           placeholder="Tambahkan nama list item"
@@ -75,7 +75,7 @@ const ModalTodoAdd = (props) => {
           {...otherProps}
         />
         <SelectInput
-          dataCy="todo-select-priority"
+          dataCy="modal-add-priority-dropdown"
           name="priority"
           label="priority"
           placeholder="Pilih Priority"
