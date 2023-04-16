@@ -49,9 +49,9 @@ const Activity = (props) => {
             <Card data={item} revalidate={refetch} key={idx} />
           ))
         ) : loading ? (
-          <EmptyState dataCy="activity-empty-state" />
+          <EmptyState dataCy="activity-empty-state" onClick={submitActivity} />
         ) : (
-          <EmptyState dataCy="activity-empty-state" />
+          <EmptyState dataCy="activity-empty-state" onClick={submitActivity} />
         )}
       </div>
     </>

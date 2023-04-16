@@ -8,7 +8,7 @@ const pageList = [
     component: lazy(() => import('../pages/activity')),
   },
   {
-    path: 'detail-activity',
+    path: 'detail/:id',
     component: lazy(() => import('../pages/detail-activity')),
   },
 ];

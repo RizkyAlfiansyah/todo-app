@@ -32,7 +32,7 @@ const Card = (props) => {
         className="w-[230px] rounded-lg shadow-sm h-[234px] bg-white cursor-pointer hover:shadow-lg flex flex-col justify-between items-start p-6"
         data-cy={dataCy}
       >
-        <NavLink className="w-full h-full" to="/detail-activity">
+        <NavLink className="w-full h-full" to={`/detail/${id}`}>
           <h3 className="w-full h-full text-lg font-bold">{title}</h3>
         </NavLink>
         <div className="w-full flex justify-between items-center">
