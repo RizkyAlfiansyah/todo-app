@@ -49,7 +49,12 @@ const Activity = (props) => {
       <div className="w-full flex flex-wrap justify-start items-center gap-5">
         {data.length > 0 ? (
           data.map((item, idx) => (
-            <Card data={item} revalidate={refetch} key={idx} />
+            <Card
+              data={item}
+              revalidate={refetch}
+              key={idx}
+              dataCy="activity-item"
+            />
           ))
         ) : loading ? (
           <EmptyState dataCy="activity-empty-state" onClick={submitActivity} />

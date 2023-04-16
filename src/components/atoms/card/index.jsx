@@ -33,14 +33,19 @@ const Card = (props) => {
         data-cy={dataCy}
       >
         <NavLink className="w-full h-full" to={`/detail/${id}`}>
-          <h3 className="w-full h-full text-lg font-bold">{title}</h3>
+          <h3
+            className="w-full h-full text-lg font-bold"
+            data-cy="activity-item-title"
+          >
+            {title}
+          </h3>
         </NavLink>
         <div className="w-full flex justify-between items-center">
-          <p className="text-sm text-gray-100">
+          <span className="text-sm text-gray-100" data-cy="activity-item-date">
             {created_at
               ? format(new Date(created_at), 'dd MMMM yyyy')
               : 'No Date'}
-          </p>
+          </span>
           <DeleteSVG
             className="hover:scale-110"
             onClick={() => toggleModalDelete()}

@@ -11,12 +11,12 @@ const MainLayout = (props) => {
         className="w-full bg-primary py-7 flex justify-center items-center shadow-md"
         data-cy="header-background"
       >
-        <p
+        <h2
           className="w-semiFull font-bold text-2xl text-white"
           data-cy="header-title"
         >
           Todo List App
-        </p>
+        </h2>
       </div>
       <div className="w-semiFull mx-auto">
         <div className="w-full flex flex-col justify-start items-center gap-12">
