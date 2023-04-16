@@ -7,8 +7,14 @@ const MainLayout = (props) => {
       className="min-h-screen bg-secondary flex flex-col justify-start gap-16"
       data-cy="main-layout"
     >
-      <div className="w-full bg-primary py-7 flex justify-center items-center shadow-md">
-        <p className="w-semiFull font-bold text-2xl text-white">
+      <div
+        className="w-full bg-primary py-7 flex justify-center items-center shadow-md"
+        data-cy="header-background"
+      >
+        <p
+          className="w-semiFull font-bold text-2xl text-white"
+          data-cy="header-title"
+        >
           Todo List App
         </p>
       </div>
