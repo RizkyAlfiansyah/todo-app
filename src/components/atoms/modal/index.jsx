@@ -54,7 +54,7 @@ const ModalLayout = (props) => {
   }, [width]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence data-cy={dataCy}>
       {isOpen && (
         <motion.aside
           className="bg-black bg-opacity-80 h-screen fixed top-0 left-0 w-screen z-20 flex justify-center items-center"
@@ -62,6 +62,7 @@ const ModalLayout = (props) => {
           animate="open"
           exit="closed"
           variants={overlayVariants}
+          data-cy={dataCy}
         >
           <OutsideHandler onOutsideClick={onClose} data-cy={dataCy}>
             <motion.div

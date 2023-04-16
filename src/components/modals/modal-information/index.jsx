@@ -15,7 +15,10 @@ const ModalInfo = (props) => {
       dataCy="modal-information"
       {...otherProps}
     >
-      <div className="w-full flex justify-start items-center gap-3 py-5 px-8">
+      <div
+        className="w-full flex justify-start items-center gap-3 py-5 px-8"
+        data-cy="modal-information"
+      >
         <InformationSVG />
         <p className="text-sm text-center">{message}</p>
       </div>

@@ -12,7 +12,7 @@ const ModalDeleteTodo = (props) => {
       onClose={onClose}
       noProps
       width={490}
-      dataCy="modal-delete-confirm-button"
+      dataCy="modal-delete"
       {...otherProps}
     >
       <div className="w-full flex flex-col justify-start items-center gap-10 py-11 px-14">
@@ -30,7 +30,7 @@ const ModalDeleteTodo = (props) => {
             Batal
           </Button>
           <Button
-            dataCy="activity-item-delete-button"
+            dataCy="modal-delete-confirm-button"
             variant="error"
             size="lg"
             onClick={onSubmit}
