@@ -22,6 +22,10 @@ const Card = (props) => {
     } catch (error) {
       console.log(error);
     } finally {
+      revalidate();
+      setTimeout(() => {
+        toggleModalInfo();
+      }, 1000);
       toggleModalDelete();
     }
   };
@@ -64,7 +68,6 @@ const Card = (props) => {
         isOpen={openInfo}
         onClose={() => {
           toggleModalInfo();
-          revalidate();
         }}
       />
     </>

@@ -108,6 +108,7 @@ const DetailActivity = (props) => {
           )}
           <EditSVG
             className="hover:scale-105"
+            data-cy="todo-title"
             onClick={() => {
               setIsEdit((prev) => !prev);
               setTitle(data?.title);
