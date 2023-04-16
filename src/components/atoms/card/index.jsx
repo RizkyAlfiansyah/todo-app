@@ -49,6 +49,7 @@ const Card = (props) => {
           <DeleteSVG
             className="hover:scale-110"
             onClick={() => toggleModalDelete()}
+            data-cy="activity-item-delete-button"
           />
         </div>
       </div>
