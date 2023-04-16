@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, ListCard, Modal } from '../../components/atoms';
 import {
@@ -33,6 +33,7 @@ const DetailActivity = (props) => {
   const { isOpen: openModal, toggleModal: toggleModal } = useModal();
   const [isEdit, setIsEdit] = useState(false);
   const [title, setTitle] = useState('');
+  const [sort, setSort] = useState('newest');
 
   const { todo_items } = data || [];
 
@@ -51,6 +52,32 @@ const DetailActivity = (props) => {
       refetch(id);
     }
   };
+
+  const dataFiltered = useMemo(() => {
+    if (todo_items?.length > 0) {
+      if (sort === 'newest') {
+        return todo_items.sort((a, b) => {
+          return b.id - a.id;
+        });
+      } else if (sort === 'oldest') {
+        return todo_items.sort((a, b) => {
+          return a.id - b.id;
+        });
+      } else if (sort === 'a-z') {
+        return todo_items.sort((a, b) => {
+          return a.title.localeCompare(b.title);
+        });
+      } else if (sort === 'z-a') {
+        return todo_items.sort((a, b) => {
+          return b.title.localeCompare(a.title);
+        });
+      } else if (sort === 'unfinished') {
+        return todo_items.sort((a, b) => {
+          return b.is_active - a.is_active;
+        });
+      }
+    }
+  }, [todo_items, sort]);
 
   return (
     <>
@@ -82,7 +109,7 @@ const DetailActivity = (props) => {
           />
         </div>
         <div className="relative flex justify-start items-center gap-5">
-          {todo_items?.length > 0 ? (
+          {dataFiltered?.length > 0 ? (
             <SortItems
               icons={icons}
               options={[
@@ -92,7 +119,10 @@ const DetailActivity = (props) => {
                 { label: 'Z-A', value: 'z-a' },
                 { label: 'Unfinished', value: 'unfinished' },
               ]}
-              value={'newest'}
+              value={sort}
+              onChange={(e) => {
+                setSort(e?.value);
+              }}
             />
           ) : null}
           <Button icon={<PlusSVG />} onClick={() => toggleModal()}>
@@ -101,8 +131,8 @@ const DetailActivity = (props) => {
         </div>
       </header>
       <div className="w-full flex flex-col gap-[10px]">
-        {todo_items?.length > 0 ? (
-          todo_items?.map((item, idx) => (
+        {dataFiltered?.length > 0 ? (
+          dataFiltered?.map((item, idx) => (
             <ListCard
               dataCy="activity-list-card"
               key={idx}
