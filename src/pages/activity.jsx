@@ -34,9 +34,12 @@ const Activity = (props) => {
   return (
     <>
       <header className="w-full flex justify-between items-center">
-        <h2 className="text-4xl font-bold">Activity</h2>
+        <h2 className="text-4xl font-bold" data-cy="activity-title">
+          Activity
+        </h2>
         <Button
           icon={<PlusSVG />}
+          dataCy="activity-add-button"
           disabled={loadingSubmit}
           onClick={submitActivity}
         >
