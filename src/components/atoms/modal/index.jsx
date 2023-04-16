@@ -62,10 +62,10 @@ const ModalLayout = (props) => {
           animate="open"
           exit="closed"
           variants={overlayVariants}
-          data-cy={dataCy}
         >
           <OutsideHandler onOutsideClick={onClose} data-cy={dataCy}>
             <motion.div
+              data-cy={dataCy}
               className="bg-white max-h-[95vh] h-fit relative rounded-xl"
               initial="closed"
               animate="open"

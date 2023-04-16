@@ -87,7 +87,10 @@ const DetailActivity = (props) => {
             <ChevronLeftSVG className="hover:scale-105" />
           </NavLink>
           {isEdit ? (
-            <OutsideClickHandler onOutsideClick={() => submitEdit(data?.id)}>
+            <OutsideClickHandler
+              onOutsideClick={() => submitEdit(data?.id)}
+              data-cy="todo-title"
+            >
               <input
                 type="text"
                 className="border-b-2 border-b-black bg-transparent text-4xl font-bold focus:outline-none"
