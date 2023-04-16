@@ -18,7 +18,7 @@ const MainRouter = () => {
       <Route path="/" element={<MainLayout />}>
         {pageList.map((li, idx) => {
           const Element = li.component;
-          return <Route key={li.idx} path={li.path} element={<Element />} />;
+          return <Route key={idx} path={li.path} element={<Element />} />;
         })}
       </Route>
     </Routes>

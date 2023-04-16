@@ -15,6 +15,7 @@ const ModalLayout = (props) => {
     width,
     onSubmit,
     dataCy,
+    noProps,
   } = props;
   useEffect(() => {
     if (!enableOverlayScroll) {
@@ -70,16 +71,22 @@ const ModalLayout = (props) => {
               variants={contentVariants}
               style={{ width: width || '' }}
             >
-              <header className="w-full flex justify-between items-center py-6 px-7">
-                <p className="text-lg font-semibold">{title}</p>
-                <CloseSVG onClick={onClose} />
-              </header>
-              <article className="w-full flex flex-col gap-3 bg-white py-3 px-4 overflow-y-auto border-y border-secondary">
-                {children}
-              </article>
-              <footer className="w-full flex justify-end items-center py-6 px-7">
-                <Button onClick={onSubmit}>Simpan</Button>
-              </footer>
+              {noProps ? (
+                children
+              ) : (
+                <>
+                  <header className="w-full flex justify-between items-center py-6 px-7">
+                    <p className="text-lg font-semibold">{title}</p>
+                    <CloseSVG onClick={onClose} />
+                  </header>
+                  <article className="w-full flex flex-col gap-3 bg-white py-3 px-4 overflow-y-auto border-y border-secondary">
+                    {children}
+                  </article>
+                  <footer className="w-full flex justify-end items-center py-6 px-7">
+                    <Button onClick={onSubmit}>Simpan</Button>
+                  </footer>
+                </>
+              )}
             </motion.div>
           </OutsideHandler>
         </motion.aside>
@@ -97,6 +104,7 @@ ModalLayout.Proptypes = {
   width: Proptypes.number,
   onSubmit: Proptypes.func,
   dataCy: Proptypes.string,
+  noProps: Proptypes.bool,
 };
 
 ModalLayout.defaultProps = {
@@ -108,6 +116,7 @@ ModalLayout.defaultProps = {
   width: 830,
   onSubmit: () => {},
   dataCy: 'modal',
+  noProps: false,
 };
 
 export default ModalLayout;

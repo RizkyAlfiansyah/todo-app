@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Button, Card } from '../components/atoms';
 import { PlusSVG } from '../assets/icons';
 import { NavLink } from 'react-router-dom';
+import EmptyState from '../components/layouts/empty-state';
 
 const Activity = (props) => {
   return (
@@ -20,6 +21,7 @@ const Activity = (props) => {
         <Card />
         <Card />
         <Card />
+        {/* <EmptyState dataCy="activity-empty-state" /> */}
       </div>
     </>
   );
