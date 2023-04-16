@@ -34,6 +34,8 @@ const DetailActivity = (props) => {
   const [isEdit, setIsEdit] = useState(false);
   const [title, setTitle] = useState('');
 
+  const { todo_items } = data || [];
+
   const submitEdit = async (id) => {
     try {
       await putActivity({ title: title }, id)
@@ -80,7 +82,7 @@ const DetailActivity = (props) => {
           />
         </div>
         <div className="relative flex justify-start items-center gap-5">
-          {data.length > 0 ? (
+          {todo_items?.length > 0 ? (
             <SortItems
               icons={icons}
               options={[
@@ -99,15 +101,34 @@ const DetailActivity = (props) => {
         </div>
       </header>
       <div className="w-full flex flex-col gap-[10px]">
-        {/* <ListCard />
-        <ListCard />
-        <ListCard /> */}
-        <EmptyState dataCy="todo-empty-state" todo />
+        {todo_items?.length > 0 ? (
+          todo_items?.map((item, idx) => (
+            <ListCard
+              dataCy="activity-list-card"
+              key={idx}
+              data={item}
+              revalidate={refetch}
+            />
+          ))
+        ) : loading ? (
+          <EmptyState
+            dataCy="todo-empty-state"
+            todo
+            onClick={() => toggleModal()}
+          />
+        ) : (
+          <EmptyState
+            dataCy="todo-empty-state"
+            todo
+            onClick={() => toggleModal()}
+          />
+        )}
       </div>
       <ModalAddTodo
         label="Nama list Item"
         isOpen={openModal}
         onClose={() => toggleModal()}
+        revalidate={refetch}
       />
     </>
   );

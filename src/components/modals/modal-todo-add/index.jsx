@@ -1,25 +1,74 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import PropTypes, { oneOfType } from 'prop-types';
 import ModalLayout from '../../atoms/modal';
 import { Input } from '../../atoms';
 import { SelectInput } from '../../molecules';
 import { useForm } from '../../../hooks/common';
+import { postTodo, putTodo } from '../../../services/todo';
+import { useParams } from 'react-router-dom';
 
 const ModalTodoAdd = (props) => {
-  const { isOpen, onClose, ...otherProps } = props;
+  const { id } = useParams();
+  const { isOpen, onClose, revalidate, isEdit, data, ...otherProps } = props;
+  const [loadingSubmit, setLoadingSubmit] = useState(false);
 
-  const { state, handleFormChange } = useForm({
-    name: '',
-    priority: '',
+  const { state, handleFormChange, resetForm, setForm } = useForm({
+    title: '',
+    priority: 'very-high',
+    activity_group_id: id,
   });
 
+  useEffect(() => {
+    if (!isEdit) return;
+    const { title, priority } = data || {};
+    setForm({
+      title: title,
+      priority: priority,
+    });
+  }, [isOpen]);
+
+  const handleSubmit = async (isEdit) => {
+    setLoadingSubmit(true);
+    try {
+      (await isEdit)
+        ? putTodo(state, data?.id)
+        : postTodo(state)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(err);
+              setLoadingSubmit(false);
+            });
+    } catch (error) {
+      console.log(error);
+      setLoadingSubmit(false);
+    } finally {
+      onClose();
+      setLoadingSubmit(false);
+      revalidate(id);
+    }
+  };
+
+  const onCloseModal = () => {
+    onClose();
+    resetForm();
+  };
+
   return (
-    <ModalLayout isOpen={isOpen} onClose={onClose} {...otherProps}>
+    <ModalLayout
+      isOpen={isOpen}
+      onClose={onCloseModal}
+      onSubmit={() => handleSubmit(isEdit)}
+      dataCy="modal-todo-add"
+      disabled={loadingSubmit || state.title === '' || state.priority === ''}
+      {...otherProps}
+    >
       <div className="w-full p-8 flex flex-col justify-start items-start gap-6">
         <Input
-          name="name"
-          dataCy="todo-input-name"
-          value={state.name}
+          name="title"
+          dataCy="todo-input-title"
+          value={state.title}
           type="text"
           placeholder="Tambahkan nama list item"
           onChange={handleFormChange}
@@ -28,13 +77,13 @@ const ModalTodoAdd = (props) => {
         <SelectInput
           dataCy="todo-select-priority"
           name="priority"
-          label="prioriry"
+          label="priority"
           placeholder="Pilih Priority"
           value={state.priority}
           options={[
             { label: 'Very High', value: 'very-high' },
             { label: 'High', value: 'high' },
-            { label: 'Medium', value: 'medium' },
+            { label: 'Medium', value: 'normal' },
             { label: 'Low', value: 'low' },
             { label: 'Very Low', value: 'very-low' },
           ]}
@@ -50,11 +99,19 @@ const ModalTodoAdd = (props) => {
 ModalTodoAdd.propTypes = {
   isOpen: PropTypes.bool,
   onClose: PropTypes.func,
+  revalidate: PropTypes.func,
+  id: PropTypes.string,
+  isEdit: PropTypes.bool,
+  data: oneOfType([PropTypes.object, PropTypes.array]),
 };
 
 ModalTodoAdd.defaultProps = {
   isOpen: false,
   onClose: () => {},
+  revalidate: () => {},
+  id: '',
+  isEdit: false,
+  data: {},
 };
 
 export default ModalTodoAdd;

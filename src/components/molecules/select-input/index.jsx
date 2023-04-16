@@ -14,17 +14,17 @@ import DropdownItems from '../dropdown-items';
 const icon = {
   'very-high': <ElipseRedSVG />,
   high: <ElipseYellowSVG />,
-  medium: <ElipseGreenSVG />,
+  normal: <ElipseGreenSVG />,
   low: <ElipseBlueSVG />,
   'very-low': <ElipsePurpleSVG />,
 };
 
 const iconIdx = [
-  <ElipseBlueSVG />,
-  <ElipseGreenSVG />,
-  <ElipsePurpleSVG />,
   <ElipseRedSVG />,
   <ElipseYellowSVG />,
+  <ElipseGreenSVG />,
+  <ElipseBlueSVG />,
+  <ElipsePurpleSVG />,
 ];
 const SelectInput = (props) => {
   const { dataCy, text, value, options, onChange, ...otherProps } = props;
@@ -69,12 +69,16 @@ const SelectInput = (props) => {
 };
 
 SelectInput.propTypes = {
+  dataCy: PropTypes.string,
+  onChange: PropTypes.func,
   text: PropTypes.string,
   value: PropTypes.string,
   options: oneOfType([PropTypes.array, PropTypes.object]),
 };
 
 SelectInput.defaultProps = {
+  dataCy: 'todo-select',
+  onChange: () => {},
   text: 'No Data',
   value: '',
   options: {},

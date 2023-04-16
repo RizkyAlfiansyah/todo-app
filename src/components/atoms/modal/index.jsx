@@ -16,6 +16,7 @@ const ModalLayout = (props) => {
     onSubmit,
     dataCy,
     noProps,
+    disabled,
   } = props;
   useEffect(() => {
     if (!enableOverlayScroll) {
@@ -83,7 +84,9 @@ const ModalLayout = (props) => {
                     {children}
                   </article>
                   <footer className="w-full flex justify-end items-center py-6 px-7">
-                    <Button onClick={onSubmit}>Simpan</Button>
+                    <Button onClick={onSubmit} disabled={disabled}>
+                      Simpan
+                    </Button>
                   </footer>
                 </>
               )}
@@ -105,6 +108,7 @@ ModalLayout.Proptypes = {
   onSubmit: Proptypes.func,
   dataCy: Proptypes.string,
   noProps: Proptypes.bool,
+  disabled: Proptypes.bool,
 };
 
 ModalLayout.defaultProps = {
@@ -117,6 +121,7 @@ ModalLayout.defaultProps = {
   onSubmit: () => {},
   dataCy: 'modal',
   noProps: false,
+  disabled: false,
 };
 
 export default ModalLayout;
