@@ -12,6 +12,7 @@ const ModalInfo = (props) => {
       onClose={onClose}
       noProps
       width={490}
+      dataCy="modal-information"
       {...otherProps}
     >
       <div className="w-full flex justify-start items-center gap-3 py-5 px-8">

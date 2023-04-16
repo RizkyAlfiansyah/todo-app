@@ -12,10 +12,10 @@ const MainLayout = (props) => {
         data-cy="header-background"
       >
         <h2
-          className="w-semiFull font-bold text-2xl text-white"
+          className="w-semiFull font-bold text-2xl text-white uppercase"
           data-cy="header-title"
         >
-          Todo List App
+          TO DO LIST APP
         </h2>
       </div>
       <div className="w-semiFull mx-auto">

@@ -21,7 +21,7 @@ const ModalDeleteTodo = (props) => {
         </p>
         <div className="w-full flex justify-center items-center gap-5">
           <Button
-            dataCy="todo-cancel-delete"
+            dataCy="modal-delete-cancel-button"
             variant="secondary"
             size="lg"
             onClick={onClose}
@@ -29,7 +29,7 @@ const ModalDeleteTodo = (props) => {
             Batal
           </Button>
           <Button
-            dataCy="todo-confirm-delete"
+            dataCy="activity-item-delete-button"
             variant="error"
             size="lg"
             onClick={onSubmit}

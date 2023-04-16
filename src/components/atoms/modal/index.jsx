@@ -63,7 +63,10 @@ const ModalLayout = (props) => {
           variants={overlayVariants}
           data-cy={dataCy}
         >
-          <OutsideHandler onOutsideClick={onClose}>
+          <OutsideHandler
+            onOutsideClick={onClose}
+            data-cy="activity-item-delete-button"
+          >
             <motion.div
               className="bg-white max-h-[95vh] h-fit relative rounded-xl"
               initial="closed"
