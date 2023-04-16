@@ -15,6 +15,7 @@ const ModalLayout = (props) => {
     width,
     onSubmit,
     dataCy,
+    dataCySaveButton,
     noProps,
     disabled,
   } = props;
@@ -63,10 +64,7 @@ const ModalLayout = (props) => {
           variants={overlayVariants}
           data-cy={dataCy}
         >
-          <OutsideHandler
-            onOutsideClick={onClose}
-            data-cy="activity-item-delete-button"
-          >
+          <OutsideHandler onOutsideClick={onClose} data-cy={dataCy}>
             <motion.div
               className="bg-white max-h-[95vh] h-fit relative rounded-xl"
               initial="closed"
@@ -90,7 +88,7 @@ const ModalLayout = (props) => {
                     <Button
                       onClick={onSubmit}
                       disabled={disabled}
-                      dataCy="modal-add-save-button"
+                      dataCy={dataCySaveButton}
                     >
                       Simpan
                     </Button>
@@ -114,6 +112,7 @@ ModalLayout.Proptypes = {
   width: Proptypes.number,
   onSubmit: Proptypes.func,
   dataCy: Proptypes.string,
+  dataCySaveButton: Proptypes.string,
   noProps: Proptypes.bool,
   disabled: Proptypes.bool,
 };
@@ -127,6 +126,7 @@ ModalLayout.defaultProps = {
   width: 830,
   onSubmit: () => {},
   dataCy: 'modal',
+  dataCySaveButton: 'modal-save-button',
   noProps: false,
   disabled: false,
 };

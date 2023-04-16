@@ -50,6 +50,7 @@ const SelectInput = (props) => {
         onClick={() => setIsOpen((prev) => !prev)}
         disabled={isOpen}
         value={selectedValue}
+        dataCy={dataCy}
       />
       {isOpen ? (
         <div className="absolute w-[205px] mt-1 z-50 top-[68%]">

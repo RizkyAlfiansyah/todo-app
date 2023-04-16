@@ -131,7 +131,7 @@ const DetailActivity = (props) => {
           <Button
             icon={<PlusSVG />}
             onClick={() => toggleModal()}
-            dataCy="modal-add"
+            dataCy="todo-add-button"
           >
             Tambah
           </Button>

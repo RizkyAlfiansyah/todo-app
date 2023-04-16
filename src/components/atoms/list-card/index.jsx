@@ -83,6 +83,7 @@ const ListCard = (props) => {
         <DeleteSVG
           className="w-5 h-5 hover:scale-110"
           onClick={() => toggleModalDelete()}
+          data-cy="todo-item-delete-button"
         />
       </div>
       <ModalDeleteTodo
