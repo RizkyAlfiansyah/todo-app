@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes, { oneOfType } from 'prop-types';
 import { CloseSVG, DeleteSVG, InformationSVG } from '../../../assets/icons';
-import { format } from 'date-fns';
+import { format, set } from 'date-fns';
 import { NavLink } from 'react-router-dom';
 import { useModal } from '../../../hooks/common';
 import { ModalDeleteTodo, ModalInformation } from '../../modals';
@@ -12,7 +12,8 @@ const Card = (props) => {
   const { dataCy, data, revalidate } = props;
   const { id, title, created_at } = data || {};
 
-  const { isOpen: openDelete, toggleModal: toggleModalDelete } = useModal();
+  // const { isOpen: openDelete, toggleModal: toggleModalDelete } = useModal();
+  const [openModal, setOpenModal] = useState(false);
   const submitDelete = async (id) => {
     try {
       await deleteActivity(id).then((res) => {
@@ -50,7 +51,8 @@ const Card = (props) => {
     } catch (error) {
       console.log(error);
     } finally {
-      toggleModalDelete();
+      setOpenModal(false);
+      revalidate();
     }
   };
 
@@ -76,16 +78,16 @@ const Card = (props) => {
           </span>
           <DeleteSVG
             className="hover:scale-110"
-            onClick={() => toggleModalDelete()}
+            onClick={() => setOpenModal(true)}
             data-cy="activity-item-delete-button"
           />
         </div>
       </div>
       <ModalDeleteTodo
-        isOpen={openDelete}
+        isOpen={openModal}
         data={title}
         onSubmit={() => submitDelete(id)}
-        onClose={() => toggleModalDelete()}
+        onClose={() => setOpenModal(false)}
       />
     </>
   );
