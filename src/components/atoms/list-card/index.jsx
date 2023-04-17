@@ -8,10 +8,12 @@ import {
   ElipsePurpleSVG,
   ElipseRedSVG,
   ElipseYellowSVG,
+  InformationSVG,
 } from '../../../assets/icons';
 import { useModal } from '../../../hooks/common';
-import { ModalAddTodo, ModalDeleteTodo, ModalInformation } from '../../modals';
+import { ModalAddTodo, ModalDeleteTodo } from '../../modals';
 import { deleteTodo, putTodo } from '../../../services/todo';
+import { toast } from 'react-toastify';
 
 const colors = {
   'very-high': <ElipseRedSVG />,
@@ -24,7 +26,6 @@ const ListCard = (props) => {
   const { data, revalidate } = props;
   const { isOpen: openDelete, toggleModal: toggleModalDelete } = useModal();
   const { isOpen: openEdit, toggleModal: toggleModalEdit } = useModal();
-  const { isOpen: openInfo, toggleModal: toggleModalInfo } = useModal();
 
   const { activity_group_id, title, is_active, priority } = data || {};
 
@@ -45,12 +46,42 @@ const ListCard = (props) => {
   const submitDelete = async (id) => {
     try {
       await deleteTodo(id).then((res) => {
-        toggleModalInfo();
+        toast(
+          <div
+            className="flex gap-3 rounded-xl justify-start items-center"
+            data-cy="modal-information"
+          >
+            <InformationSVG />
+            <p className="text-sm text-center">List berhasil dihapus</p>
+          </div>,
+          {
+            style: {
+              borderRadius: '12px',
+              boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.25)',
+              padding: '18px 30px',
+              margin: '0px',
+            },
+            bodyStyle: {
+              padding: '0px',
+              margin: '0px',
+              backgroundColor: '#fff',
+            },
+            position: 'bottom-left',
+            autoClose: 3000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: false,
+            closeButton: false,
+            progress: undefined,
+          }
+        );
       });
     } catch (error) {
       console.log(error);
     } finally {
       toggleModalDelete();
+      revalidate(activity_group_id);
     }
   };
 
@@ -98,14 +129,6 @@ const ListCard = (props) => {
         data={data}
         onClose={() => toggleModalEdit()}
         revalidate={revalidate}
-      />
-      <ModalInformation
-        message="List berhasil dihapus"
-        isOpen={openInfo}
-        onClose={() => {
-          toggleModalInfo();
-          revalidate(activity_group_id);
-        }}
       />
     </>
   );

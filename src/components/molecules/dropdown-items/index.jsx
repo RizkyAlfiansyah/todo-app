@@ -3,12 +3,9 @@ import PropTypes from 'prop-types';
 import { CheckSVG } from '../../../assets/icons';
 
 const DropdownItems = (props) => {
-  const { dataCy, icon, options, value, onChange } = props;
+  const { dataCy, icon, options, value, isSort, onChange } = props;
   return (
-    <ul
-      className="w-full flex flex-col justify-start items-center bg-white border border-secondary rounded-md divide-y"
-      //   data-cy={dataCy}
-    >
+    <ul className="w-full flex flex-col justify-start items-center bg-white border border-secondary rounded-md divide-y">
       {options?.map(({ label, value: optValue, isDisabled }, index) => {
         const isSelected = value === optValue;
 
@@ -29,7 +26,9 @@ const DropdownItems = (props) => {
           >
             <div
               className="flex gap-5 justify-start items-center"
-              data-cy="modal-add-priority-dropdown"
+              data-cy={
+                isSort ? 'todo-item-title' : 'modal-add-priority-dropdown'
+              }
             >
               {icon[index]}
               {label}
@@ -46,12 +45,14 @@ DropdownItems.propTypes = {
   dataCy: PropTypes.string,
   icon: PropTypes.any,
   text: PropTypes.string,
+  isSort: PropTypes.bool,
 };
 
 DropdownItems.defaultProps = {
   dataCy: '',
   icon: <></>,
   text: 'No Data',
+  isSort: false,
 };
 
 export default DropdownItems;

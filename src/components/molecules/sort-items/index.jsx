@@ -19,6 +19,7 @@ const SortItems = (props) => {
         <div className="absolute w-[235px] mt-1 z-50 top-12 right-3/4">
           <DropdownItems
             dataCy="sort-selection"
+            isSort
             icon={icons}
             value={value}
             options={options}
