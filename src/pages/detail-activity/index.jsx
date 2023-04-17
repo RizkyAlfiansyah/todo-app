@@ -11,7 +11,6 @@ import {
   UnfinishedSVG,
   ZaSVG,
 } from '../../assets/icons';
-import { useModal } from '../../hooks/common';
 import { NavLink, useParams } from 'react-router-dom';
 import { ModalAddTodo } from '../../components/modals';
 import { SortItems } from '../../components/molecules';
@@ -30,7 +29,6 @@ const icons = [
 const DetailActivity = (props) => {
   const { id } = useParams();
   const { data, refetch, loading } = useDetailActivity(id);
-  const { isOpen: openModal, toggleModal: toggleModal } = useModal();
   const [openModalAddTodo, setOpenModalAddTodo] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [title, setTitle] = useState('');
