@@ -127,7 +127,7 @@ ModalLayout.defaultProps = {
   width: 830,
   onSubmit: () => {},
   dataCy: 'modal',
-  dataCySaveButton: 'modal-save-button',
+  dataCySaveButton: 'modal-add-save-button',
   noProps: false,
   disabled: false,
 };
