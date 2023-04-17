@@ -17,16 +17,13 @@ const Card = (props) => {
   const submitDelete = async (id) => {
     try {
       await deleteActivity(id).then((res) => {
-        // toggleModalInfo();
-        toggleModalDelete();
+        toggleModalInfo();
       });
     } catch (error) {
       console.log(error);
     } finally {
       revalidate();
-      // setTimeout(() => {
-      //   toggleModalInfo();
-      // }, 500);
+      toggleModalDelete();
     }
   };
 

@@ -55,6 +55,7 @@ const SelectInput = (props) => {
       {isOpen ? (
         <div className="absolute w-[205px] mt-1 z-50 top-[68%]">
           <DropdownItems
+            dataCy="modal-add-priority-item"
             options={options}
             icon={iconIdx}
             value={value}

@@ -60,7 +60,7 @@ const ModalTodoAdd = (props) => {
       isOpen={isOpen}
       onClose={onCloseModal}
       onSubmit={() => handleSubmit(isEdit)}
-      dataCy="modal-todo-add"
+      dataCy="modal-add"
       disabled={loadingSubmit || state.title === '' || state.priority === ''}
       {...otherProps}
     >
