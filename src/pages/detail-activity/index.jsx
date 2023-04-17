@@ -98,6 +98,7 @@ const DetailActivity = (props) => {
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
+                autoFocus
                 data-cy="todo-title"
               />
             </OutsideClickHandler>
@@ -160,17 +161,9 @@ const DetailActivity = (props) => {
             />
           ))
         ) : loading ? (
-          <EmptyState
-            dataCy="todo-empty-state"
-            todo
-            onClick={() => toggleModal()}
-          />
+          <EmptyState dataCy="todo-empty-state" todo />
         ) : (
-          <EmptyState
-            dataCy="todo-empty-state"
-            todo
-            onClick={() => toggleModal()}
-          />
+          <EmptyState dataCy="todo-empty-state" todo />
         )}
       </div>
       <ModalAddTodo
