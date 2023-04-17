@@ -13,12 +13,9 @@ const Card = (props) => {
   const { id, title, created_at } = data || {};
 
   const { isOpen: openDelete, toggleModal: toggleModalDelete } = useModal();
-  const { isOpen: openInfo, toggleModal: toggleModalInfo } = useModal();
-
   const submitDelete = async (id) => {
     try {
       await deleteActivity(id).then((res) => {
-        toggleModalDelete();
         toast(
           <div
             className="flex gap-3 rounded-xl justify-start items-center"
@@ -53,7 +50,7 @@ const Card = (props) => {
     } catch (error) {
       console.log(error);
     } finally {
-      revalidate();
+      toggleModalDelete();
     }
   };
 
