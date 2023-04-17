@@ -17,7 +17,7 @@ const Card = (props) => {
   const submitDelete = async (id) => {
     try {
       await deleteActivity(id).then((res) => {
-        toggleModalInfo();
+        // toggleModalInfo();
         toggleModalDelete();
       });
     } catch (error) {
