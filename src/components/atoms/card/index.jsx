@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes, { oneOfType } from 'prop-types';
-import { CloseSVG, DeleteSVG, InformationSVG } from '../../../assets/icons';
-import { format, set } from 'date-fns';
+import { DeleteSVG, InformationSVG } from '../../../assets/icons';
+import { format } from 'date-fns';
 import { NavLink } from 'react-router-dom';
-import { useModal } from '../../../hooks/common';
-import { ModalDeleteTodo, ModalInformation } from '../../modals';
+import { ModalDeleteTodo } from '../../modals';
 import { deleteActivity } from '../../../services/activity';
 import { toast } from 'react-toastify';
 
@@ -12,7 +11,6 @@ const Card = (props) => {
   const { dataCy, data, revalidate } = props;
   const { id, title, created_at } = data || {};
 
-  // const { isOpen: openDelete, toggleModal: toggleModalDelete } = useModal();
   const [openModal, setOpenModal] = useState(false);
   const submitDelete = async (id) => {
     try {

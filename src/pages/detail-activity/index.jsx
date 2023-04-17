@@ -102,7 +102,14 @@ const DetailActivity = (props) => {
               />
             </OutsideClickHandler>
           ) : (
-            <h2 className="text-4xl font-bold" data-cy="todo-title">
+            <h2
+              className="text-4xl font-bold"
+              data-cy="todo-title"
+              onClick={() => {
+                setIsEdit(true);
+                setTitle(data?.title);
+              }}
+            >
               {data?.title}
             </h2>
           )}
@@ -110,6 +117,7 @@ const DetailActivity = (props) => {
             className="hover:scale-105"
             data-cy="todo-title"
             onClick={() => {
+              if (isEdit) return submitEdit(data?.id);
               setIsEdit((prev) => !prev);
               setTitle(data?.title);
             }}

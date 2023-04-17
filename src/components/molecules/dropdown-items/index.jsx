@@ -7,7 +7,7 @@ const DropdownItems = (props) => {
   return (
     <ul
       className="w-full flex flex-col justify-start items-center bg-white border border-secondary rounded-md divide-y"
-      data-cy={dataCy}
+      data-cy="modal-add-priority-dropdown"
     >
       {options?.map(({ label, value: optValue, isDisabled }, index) => {
         const isSelected = value === optValue;
