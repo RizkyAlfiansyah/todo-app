@@ -8,12 +8,13 @@ const SortItems = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col gap-2" data-cy={dataCy}>
-      <div className="rounded-full p-2 border border-gray-300 hover:scale-105">
-        <SortSVG
-          onClick={() => setIsOpen((prev) => !prev)}
-          data-cy="todo-sort-button"
-        />
+    <div className="flex flex-col gap-2">
+      <div
+        className="rounded-full p-2 border border-gray-300 hover:scale-105"
+        onClick={() => setIsOpen((prev) => !prev)}
+        data-cy="todo-sort-button"
+      >
+        <SortSVG />
       </div>
       {isOpen ? (
         <div className="absolute w-[235px] mt-1 z-50 top-12 right-3/4">
