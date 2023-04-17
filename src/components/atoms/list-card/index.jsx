@@ -102,7 +102,7 @@ const ListCard = (props) => {
           {colors[priority]}
           <p
             className={`text-lg text-gray-100 ${!is_active && 'line-through'}`}
-            data-cy="todo-title"
+            data-cy="todo-item-title"
           >
             {title}
           </p>
