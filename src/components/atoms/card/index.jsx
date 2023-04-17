@@ -18,8 +18,7 @@ const Card = (props) => {
   const submitDelete = async (id) => {
     try {
       await deleteActivity(id).then((res) => {
-        revalidate();
-        // toggleModalInfo();
+        toggleModalDelete();
         toast(
           <div
             className="flex gap-3 rounded-xl justify-start items-center"
@@ -54,8 +53,7 @@ const Card = (props) => {
     } catch (error) {
       console.log(error);
     } finally {
-      // toggleModalInfo();
-      toggleModalDelete();
+      revalidate();
     }
   };
 
@@ -91,13 +89,6 @@ const Card = (props) => {
         data={title}
         onSubmit={() => submitDelete(id)}
         onClose={() => toggleModalDelete()}
-      />
-      <ModalInformation
-        message="Activity berhasil dihapus"
-        isOpen={openInfo}
-        onClose={() => {
-          toggleModalInfo();
-        }}
       />
     </>
   );
