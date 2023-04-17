@@ -131,7 +131,7 @@ const DetailActivity = (props) => {
               icons={icons}
               options={[
                 { label: 'Terbaru', value: 'newest' },
-                { label: 'terlama', value: 'oldest' },
+                { label: 'Terlama', value: 'oldest' },
                 { label: 'A-Z', value: 'a-z' },
                 { label: 'Z-A', value: 'z-a' },
                 { label: 'Belum Selesai', value: 'unfinished' },
