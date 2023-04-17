@@ -72,6 +72,7 @@ const ModalTodoAdd = (props) => {
           type="text"
           placeholder="Tambahkan nama list item"
           onChange={handleFormChange}
+          autoFocus
           {...otherProps}
         />
         <SelectInput

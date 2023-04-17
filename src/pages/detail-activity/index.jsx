@@ -31,6 +31,7 @@ const DetailActivity = (props) => {
   const { id } = useParams();
   const { data, refetch, loading } = useDetailActivity(id);
   const { isOpen: openModal, toggleModal: toggleModal } = useModal();
+  const [openModalAddTodo, setOpenModalAddTodo] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [title, setTitle] = useState('');
   const [sort, setSort] = useState('newest');
@@ -129,11 +130,11 @@ const DetailActivity = (props) => {
             <SortItems
               icons={icons}
               options={[
-                { label: 'Newest', value: 'newest' },
-                { label: 'Oldest', value: 'oldest' },
+                { label: 'Terbaru', value: 'newest' },
+                { label: 'terlama', value: 'oldest' },
                 { label: 'A-Z', value: 'a-z' },
                 { label: 'Z-A', value: 'z-a' },
-                { label: 'Unfinished', value: 'unfinished' },
+                { label: 'Belum Selesai', value: 'unfinished' },
               ]}
               value={sort}
               onChange={(e) => {
@@ -144,7 +145,7 @@ const DetailActivity = (props) => {
           <Button
             icon={<PlusSVG />}
             onClick={() => {
-              toggleModal();
+              setOpenModalAddTodo(true);
               setIsEdit(false);
             }}
             dataCy="todo-add-button"
@@ -171,8 +172,8 @@ const DetailActivity = (props) => {
       </div>
       <ModalAddTodo
         label="Nama list Item"
-        isOpen={openModal}
-        onClose={() => toggleModal()}
+        isOpen={openModalAddTodo}
+        onClose={() => setOpenModalAddTodo(false)}
         revalidate={refetch}
       />
     </>
