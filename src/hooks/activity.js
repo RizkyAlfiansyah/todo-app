@@ -8,19 +8,17 @@ export const useActivity = () => {
   let mounted = false;
 
   useEffect(() => {
-    mounted = true;
-    _fetchData();
+    if (!mounted) {
+      _fetchData();
+      mounted = true;
+    }
 
-    return () => {
-      mounted = false;
-    };
+    return () => (mounted = true);
   }, [mounted]);
 
   const _fetchData = async () => {
     setLoading(true);
-    getActivity({
-      email: 'rizkkyaf@gmail.com',
-    })
+    getActivity('rizkkyaf@gmail.com')
       .then((res) => {
         setData(res.data);
       })
@@ -40,12 +38,12 @@ export const useDetailActivity = (id) => {
   let mounted = false;
 
   useEffect(() => {
-    mounted = true;
-    _fetchData(id);
+    if (!mounted) {
+      _fetchData(id);
+      mounted = true;
+    }
 
-    return () => {
-      mounted = false;
-    };
+    return () => (mounted = true);
   }, [mounted]);
 
   const _fetchData = async (id) => {

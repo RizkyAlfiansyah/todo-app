@@ -1,7 +1,7 @@
 import instance from '../lib/axios';
 
 export const getActivity = async (params) => {
-  return await instance.get('/activity-groups', { params });
+  return await instance.get(`/activity-groups?email=${params}`);
 };
 
 export const getActivityById = async (id) => {
