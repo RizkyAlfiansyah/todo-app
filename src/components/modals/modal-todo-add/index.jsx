@@ -34,7 +34,7 @@ const ModalTodoAdd = (props) => {
         ? putTodo(state, data?.id)
         : postTodo(state)
             .then((res) => {
-              onClose();
+              !isEdit && onClose();
             })
             .catch((err) => {
               console.log(err);

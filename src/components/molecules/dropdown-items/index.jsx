@@ -26,10 +26,12 @@ const DropdownItems = (props) => {
           >
             <div
               className="flex gap-5 justify-start items-center"
-              data-cy="modal-add-priority-dropdown"
+              data-cy={
+                isSort ? 'todo-item-title' : 'modal-add-priority-dropdown'
+              }
             >
               {icon[index]}
-              <p data-cy="todo-item-title">{label}</p>
+              <span data-cy="todo-item-title">{label}</span>
             </div>
             {isSelected && <CheckSVG />}
           </li>
