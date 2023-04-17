@@ -18,15 +18,15 @@ const Card = (props) => {
     try {
       await deleteActivity(id).then((res) => {
         toggleModalInfo();
+        toggleModalDelete();
       });
     } catch (error) {
       console.log(error);
     } finally {
       revalidate();
-      setTimeout(() => {
-        toggleModalInfo();
-      }, 1000);
-      toggleModalDelete();
+      // setTimeout(() => {
+      //   toggleModalInfo();
+      // }, 500);
     }
   };
 
