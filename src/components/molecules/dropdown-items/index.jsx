@@ -7,7 +7,7 @@ const DropdownItems = (props) => {
   return (
     <ul
       className="w-full flex flex-col justify-start items-center bg-white border border-secondary rounded-md divide-y"
-      data-cy="modal-add-priority-dropdown"
+      data-cy={dataCy}
     >
       {options?.map(({ label, value: optValue, isDisabled }, index) => {
         const isSelected = value === optValue;
@@ -27,7 +27,10 @@ const DropdownItems = (props) => {
               }
             }}
           >
-            <div className="flex gap-5 justify-start items-center">
+            <div
+              className="flex gap-5 justify-start items-center"
+              data-cy="modal-add-priority-dropdown"
+            >
               {icon[index]}
               {label}
             </div>

@@ -115,7 +115,7 @@ const DetailActivity = (props) => {
           )}
           <EditSVG
             className="hover:scale-105"
-            data-cy="todo-title"
+            data-cy="todo-title-edit-button"
             onClick={() => {
               if (isEdit) return submitEdit(data?.id);
               setIsEdit((prev) => !prev);
