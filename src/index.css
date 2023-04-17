@@ -19,10 +19,16 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.Toastify__toast {
+  min-height: fit-content !important;
+  font-family: 'Poppins', sans-serif !important;
+}
+
 h1,
 h2,
 h3,
-span {
+span,
+p {
   color: #111111;
 }
 

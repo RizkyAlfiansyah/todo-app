@@ -1,6 +1,7 @@
 import React, { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainLayout from '../components/layouts/main.layout';
+import { ToastContainer } from 'react-toastify';
 
 const pageList = [
   {
@@ -23,6 +24,7 @@ const MainRouter = () => {
           })}
         </Route>
       </Routes>
+      <ToastContainer position="bottom-left" autoClose={3000} />
     </>
   );
 };
